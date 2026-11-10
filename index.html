@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ETL Exercise</title>
+<style>
+	:root {
+		color-scheme: light;
+		font-family: Inter, "Segoe UI", Arial, sans-serif;
+		color: #172033;
+		background: #f3f6fb;
+	}
+
+	* { box-sizing: border-box; }
+
+	body {
+		min-height: 100vh;
+		margin: 0;
+		padding: 48px 20px;
+		background: radial-gradient(circle at top left, #e5efff 0, transparent 34%), #f3f6fb;
+	}
+
+	.page { width: min(760px, 100%); margin: 0 auto; }
+
+	.student-info {
+		margin: 0 0 22px 4px;
+		color: #65718a;
+		font-size: 0.9rem;
+		line-height: 1.6;
+	}
+
+	.student-info strong { color: #27344d; }
+
+	.card {
+		overflow: hidden;
+		border: 1px solid #e4e9f2;
+		border-radius: 20px;
+		background: #fff;
+		box-shadow: 0 18px 55px rgba(32, 54, 91, 0.1);
+	}
+
+	.hero { padding: 32px 36px 26px; border-bottom: 1px solid #edf0f5; }
+
+	.eyebrow {
+		margin: 0 0 8px;
+		color: #526ee5;
+		font-size: 0.75rem;
+		font-weight: 700;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+	}
+
+	h1 { margin: 0; font-size: clamp(1.7rem, 5vw, 2.2rem); letter-spacing: -0.04em; }
+	.subtitle { margin: 10px 0 0; color: #778198; line-height: 1.6; }
+	.content { display: grid; gap: 22px; padding: 28px 36px 36px; }
+
+	.step {
+		padding: 20px;
+		border: 1px solid #e8ecf3;
+		border-radius: 14px;
+		background: #fcfdff;
+	}
+
+	.step-heading { display: flex; align-items: center; gap: 11px; margin: 0 0 15px; font-size: 1rem; }
+	.step-number {
+		display: grid;
+		width: 28px;
+		height: 28px;
+		place-items: center;
+		flex: 0 0 28px;
+		border-radius: 9px;
+		background: #edf1ff;
+		color: #526ee5;
+		font-size: 0.82rem;
+		font-weight: 700;
+	}
+
+	.file-list { display: grid; gap: 16px; }
+	.file-field { display: grid; gap: 7px; color: #34415b; font-size: 0.9rem; font-weight: 600; }
+	.file-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+	input[type="file"] { min-width: 0; flex: 1 1 250px; color: #65718a; font: inherit; font-weight: 400; }
+	input[type="file"]::file-selector-button {
+		margin-right: 12px;
+		padding: 10px 13px;
+		border: 1px solid #dfe5ef;
+		border-radius: 9px;
+		background: #fff;
+		color: #34415b;
+		font: inherit;
+		font-weight: 600;
+		cursor: pointer;
+	}
+
+	.actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+	button {
+		min-height: 42px;
+		padding: 0 16px;
+		border: 0;
+		border-radius: 9px;
+		background: #526ee5;
+		color: #fff;
+		font: inherit;
+		font-size: 0.9rem;
+		font-weight: 650;
+		cursor: pointer;
+		transition: background 140ms ease, transform 140ms ease;
+	}
+
+	button:hover:not(:disabled) { background: #405bd0; transform: translateY(-1px); }
+	button:focus-visible, input:focus-visible { outline: 3px solid #b9c5ff; outline-offset: 3px; }
+	button:disabled { cursor: not-allowed; opacity: 0.55; }
+	.download-button { background: #eaf7f0; color: #23734c; }
+	.download-button:hover:not(:disabled) { background: #d9f0e4; }
+	.status { margin: 14px 0 0; color: #65718a; font-size: 0.9rem; line-height: 1.5; }
+
+	pre {
+		max-height: 330px;
+		overflow: auto;
+		margin: 0;
+		padding: 16px;
+		border: 1px solid #e8ecf3;
+		border-radius: 10px;
+		background: #f6f8fc;
+		color: #34415b;
+		font: 0.84rem/1.65 Consolas, "SFMono-Regular", monospace;
+		white-space: pre-wrap;
+		overflow-wrap: anywhere;
+	}
+
+	@media (max-width: 560px) {
+		body { padding: 28px 14px; }
+		.hero { padding: 26px 22px 22px; }
+		.content { padding: 20px 18px 24px; }
+		.step { padding: 16px; }
+		.actions button { flex: 1 1 100%; }
+	}
+</style>
+</head>
+<body>
+<main class="page">
+	<p class="student-info"><strong>Full Name Here</strong><br>IT 3206N · [SCHEDULE]</p>
+
+	<section class="card" aria-labelledby="page-title">
+		<header class="hero">
+			<p class="eyebrow">Data integration</p>
+			<h1 id="page-title">ETL Exercise</h1>
+			<p class="subtitle">Bring your system data together, give it a quick clean-up, and export the result.</p>
+		</header>
+
+		<div class="content">
+			<section class="step" aria-labelledby="upload-heading">
+				<h2 class="step-heading" id="upload-heading"><span class="step-number">1</span>Upload your source files</h2>
+				<div class="file-list">
+					<label class="file-field" for="fileSIS">Student Information System (SIS)
+						<input type="file" id="fileSIS" accept=".csv">
+					</label>
+					<label class="file-field" for="fileLMS">Learning Management System (LMS)
+						<input type="file" id="fileLMS" accept=".csv">
+					</label>
+					<label class="file-field" for="fileACC">Accounting System
+						<input type="file" id="fileACC" accept=".csv">
+					</label>
+				</div>
+				<div class="actions">
+					<button id="runBtn">Run ETL</button>
+					<button id="copyBtn" disabled>Copy JSON</button>
+					<button class="download-button" id="downloadBtn" disabled>Download JSON</button>
+				</div>
+				<p class="status" id="status" aria-live="polite">Upload the three CSV files and click Run ETL.</p>
+			</section>
+
+			<section class="step" aria-labelledby="output-heading">
+				<h2 class="step-heading" id="output-heading"><span class="step-number">2</span>Your integrated JSON</h2>
+				<pre id="output">Your JSON output will appear here after the ETL run.</pre>
+			</section>
+		</div>
+	</section>
+</main>
+
+<script src="etl.js" defer></script>
+</body>
+</html>
